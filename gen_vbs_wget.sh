@@ -1,0 +1,36 @@
+#!/bin/bash
+if [ -z "$2" ]; then 
+    echo "Usage: $0 <url> <file to download>"
+    exit 0
+fi
+
+echo "***************************************************************"
+echo "*           Copy the following into your shell                *"
+echo "***************************************************************"
+echo 
+echo "echo strUrl = $1 > wget.vbs"
+echo "echo StrFile = $2 >> wget.vbs"
+echo "echo Const HTTPREQUEST_PROXYSETTING_DEFAULT = 0 >> wget.vbs"
+echo "echo Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0 >> wget.vbs"
+echo "echo Const HTTPREQUEST_PROXYSETTING_DIRECT = 1 >> wget.vbs"
+echo "echo Const HTTPREQUEST_PROXYSETTING_PROXY = 2 >> wget.vbs"
+echo "echo Dim http  varByteArray  strData  strBugger  lngCounter  fs  ts >> wget.vbs"
+echo "echo Err.Clear >> wget.vbs"
+echo "echo Set http = Nothing >> wget.vbs"
+echo "echo Set http = CreateObject("WinHttp.WinHttpRequest.5.1") >> wget.vbs"
+echo "echo If http Is Nothing Then Set http = CreateObject("WinHttp.WinHttpRequest") >> wget.vbs"
+echo "echo If http Is Nothing Then Set http = CreateObject("MSXML2.ServerXMLHTTP") >> wget.vbs"
+echo "echo If http Is Nothing Then Set http = CreateObject("Microsoft.XMLHTTP") >> wget.vbs"
+echo "echo http.Open "GET", strURL, False >> wget.vbs"
+echo "echo http.Send >> wget.vbs"
+echo "echo varByteArray = http.ResponseBody >> wget.vbs"
+echo "echo Set http = Nothing >> wget.vbs"
+echo "echo Set fs = CreateObject("Scripting.FileSystemObject") >> wget.vbs"
+echo "echo Set ts = fs.CreateTextFile(StrFile, True) >> wget.vbs"
+echo "echo strData = "" >> wget.vbs"
+echo "echo strBuffer = "" >> wget.vbs" 
+echo "echo For lngCounter = 0 to UBound(varByteArray) >> wget.vbs"
+echo "echo ts.Write Chr(255 And Ascb(Midb(varByteArray, lngCounter + 1, 1))) >> wget.vbs"
+echo "echo Next >> wget.vbs"
+echo "echo ts.Close >> wget.vbs"
+echo "cscript wget.vbs"
