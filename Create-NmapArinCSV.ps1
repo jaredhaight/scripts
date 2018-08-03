@@ -1,3 +1,27 @@
+<#
+.DESCRIPTION
+
+This script takes an NMAP xml file, looks up ARIN info for each IP address and then returns a collection of objects correlating the data.
+
+If you specify the OutCsvFile parameter, it will save the results to CSV.
+
+Author: Jared Haight at X-Force Red
+
+.PARAMETER SourceFile
+
+The path to the NMAP XML file (Required)
+.PARAMETER OutCsvFile
+
+The path to save a output to in CSV format (Optional)
+.EXAMPLE
+
+Create-NmapArinCSV.ps1 -SourceFile ../output/nmap_results.xml -OutCsvFile ../processed/nmap_arin_results.csv
+
+.LINK
+https://github.com/jaredhaight/scripts/blob/master/Create-NmapArinCSV.ps1
+
+#>
+
 param(
   [Parameter(Mandatory = $true)]
   $SourceFile,
